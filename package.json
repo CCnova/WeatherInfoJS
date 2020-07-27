@@ -1,0 +1,24 @@
+{
+  "name": "weatherinfojs",
+  "version": "1.0.0",
+  "description": "Project to show weather information",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CCnova/WeatherInfoJS.git"
+  },
+  "keywords": [
+    "javascript",
+    "weather",
+    "api"
+  ],
+  "author": "Caio Nova",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CCnova/WeatherInfoJS/issues"
+  },
+  "homepage": "https://github.com/CCnova/WeatherInfoJS#readme"
+}
