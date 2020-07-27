@@ -37,7 +37,8 @@ app.get('/weather/:longlat', async (request, response) => {
   const latitude = userLocation[1]; 
   const API_KEY = 'q9iZNUOtj55fEKdYDWu0gMWjvDIkd8kS'; // Add your own API Key
 
-  const fetchResponse = await fetch(`https://api.climacell.co/v3/weather/nowcast?lat=${latitude}&lon=${longitude}&unit_system=si&timestep=5&start_time=now&apikey=${API_KEY}`);
+  const fetchResponse = await fetch(`https://api.climacell.co/v3/weather/realtime?lat=${latitude}&lon=${longitude}&unit_system=si&apikey=${API_KEY}`);
   const jsonFormatRes = await fetchResponse.json();
+  console.log(jsonFormatRes);
   response.json(jsonFormatRes);
 });

@@ -14,6 +14,11 @@ function setup() {
       const response = await fetch(apiUrl);
       const jsonFormatReponse = await response.json();
       console.log(jsonFormatReponse);
+
+      const precipitation = document.getElementById('precipitation');
+      const rating = document.getElementById('precipRating');
+      precipitation.textContent = jsonFormatReponse.precipitation_type.value;
+      rating.textContent = jsonFormatReponse.precipitation.value;
     });
   } else {
     console.log('Geolocation is not available!\nCan not get user location');
