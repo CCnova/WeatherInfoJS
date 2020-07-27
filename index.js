@@ -35,10 +35,19 @@ app.get('/weather/:longlat', async (request, response) => {
   const userLocation = request.params.longlat.split(',');
   const longitude = userLocation[0];
   const latitude = userLocation[1]; 
-  const API_KEY = 'q9iZNUOtj55fEKdYDWu0gMWjvDIkd8kS'; // Add your own API Key
+  const WEATHER_API_KEY = 'q9iZNUOtj55fEKdYDWu0gMWjvDIkd8kS'; // Add your own API Key
+  const weatherUrl = `https://api.climacell.co/v3/weather/realtime?lat=${latitude}&lon=${longitude}&unit_system=si&apikey=${WEATHER_API_KEY}`;
+  const weatherResponse = await fetch(weatherUrl);
+  const weatherJsonFormatRes = await weatherResponse.json();
 
-  const fetchResponse = await fetch(`https://api.climacell.co/v3/weather/realtime?lat=${latitude}&lon=${longitude}&unit_system=si&apikey=${API_KEY}`);
-  const jsonFormatRes = await fetchResponse.json();
-  console.log(jsonFormatRes);
-  response.json(jsonFormatRes);
+  const airQUrl = `https://api.openaq.org/v1/latest?coordinates=40.73,-73.99`; // You can put your Longitude and latitude on this url in coordinates
+  const airQResponse = await fetch(airQUrl);
+  const airQJsonFormatRes = await airQResponse.json();
+
+  const data = {
+    weather: weatherJsonFormatRes,
+    airQuality: airQJsonFormatRes
+  }
+
+  response.json(data);
 });

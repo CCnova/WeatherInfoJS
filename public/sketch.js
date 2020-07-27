@@ -6,7 +6,6 @@ function setup() {
     navigator.geolocation.getCurrentPosition( async position => {
       lat = position.coords.latitude;
       long = position.coords.longitude;
-      console.log(lat, long);
       document.getElementById('latitude').textContent = `Latitude: ${lat}`;
       document.getElementById('longitude').textContent = `Longitude: ${long}`;
 
@@ -17,8 +16,8 @@ function setup() {
 
       const precipitation = document.getElementById('precipitation');
       const rating = document.getElementById('precipRating');
-      precipitation.textContent = jsonFormatReponse.precipitation_type.value;
-      rating.textContent = jsonFormatReponse.precipitation.value;
+      precipitation.textContent = jsonFormatReponse.weather.precipitation_type.value;
+      rating.textContent = jsonFormatReponse.weather.precipitation.value;
     });
   } else {
     console.log('Geolocation is not available!\nCan not get user location');
