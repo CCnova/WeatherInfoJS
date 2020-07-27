@@ -1,6 +1,23 @@
 function setup() {
   noCanvas();
   let lat, long;
+  if ('geolocation' in navigator) {
+    console.log('Geolocation is available!\nGetting user location...');
+    navigator.geolocation.getCurrentPosition( async position => {
+      lat = position.coords.latitude;
+      long = position.coords.longitude;
+      console.log(lat, long);
+      document.getElementById('latitude').textContent = `Latitude: ${lat}`;
+      document.getElementById('longitude').textContent = `Longitude: ${long}`;
+
+      const apiUrl = `/weather`;
+      const response = await fetch(apiUrl);
+      const jsonFormatReponse = response.json();
+      console.log(jsonFormatReponse);
+    });
+  } else {
+    console.log('Geolocation is not available!\nCan not get user location');
+  }
 
   const btn = document.getElementById('submit');
   btn.addEventListener('click', async evResult => {
@@ -19,16 +36,4 @@ function setup() {
     console.log(jsonResponse);
   });
 
-  if ('geolocation' in navigator) {
-    console.log('Geolocation is available!\nGetting user location...');
-    navigator.geolocation.getCurrentPosition( async position => {
-      lat = position.coords.latitude;
-      long = position.coords.longitude;
-      console.log(lat, long);
-      document.getElementById('latitude').textContent = `Latitude: ${lat}`;
-      document.getElementById('longitude').textContent = `Longitude: ${long}`;
-    });
-  } else {
-    console.log('Geolocation is not available!\nCan not get user location');
-  }
 }
