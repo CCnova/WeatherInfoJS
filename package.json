@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/CCnova/WeatherInfoJS/issues"
   },
-  "homepage": "https://github.com/CCnova/WeatherInfoJS#readme"
+  "homepage": "https://github.com/CCnova/WeatherInfoJS#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
