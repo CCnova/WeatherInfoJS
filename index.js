@@ -1,6 +1,8 @@
 const express = require('express');
 const Datastore = require('nedb');
 const fetch = require('node-fetch');
+require('dotenv').config();
+
 
 const app = express();
 app.listen(3000, () => console.log('listening at 3000'));
@@ -35,8 +37,7 @@ app.get('/weather/:longlat', async (request, response) => {
   const userLocation = request.params.longlat.split(',');
   const longitude = userLocation[0];
   const latitude = userLocation[1]; 
-  const WEATHER_API_KEY = 'q9iZNUOtj55fEKdYDWu0gMWjvDIkd8kS'; // Add your own API Key
-  const weatherUrl = `https://api.climacell.co/v3/weather/realtime?lat=${latitude}&lon=${longitude}&unit_system=si&apikey=${WEATHER_API_KEY}`;
+  const weatherUrl = `https://api.climacell.co/v3/weather/realtime?lat=${latitude}&lon=${longitude}&unit_system=si&apikey=${process.env.API_KEY}`;
   const weatherResponse = await fetch(weatherUrl);
   const weatherJsonFormatRes = await weatherResponse.json();
 
