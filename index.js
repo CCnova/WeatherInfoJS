@@ -31,10 +31,13 @@ app.post('/api', ( request, response ) => {
   response.json(data);
 });
 
-app.get('/weather', async (request, response) => {
-  const API_KEY = 'q9iZNUOtj55fEKdYDWu0gMWjvDIkd8kS';
-  const apiUrl = `https://api.climacell.co/v3/weather/nowcast?unit_system=si&timestep=5&start_time=now&apikey=${API_KEY}`;
-  const fetchResponse = await fetch(apiUrl);
+app.get('/weather/:longlat', async (request, response) => {
+  const userLocation = request.params.longlat.split(',');
+  const longitude = userLocation[0];
+  const latitude = userLocation[1]; 
+  const API_KEY = 'q9iZNUOtj55fEKdYDWu0gMWjvDIkd8kS'; // Add your own API Key
+
+  const fetchResponse = await fetch(`https://api.climacell.co/v3/weather/nowcast?lat=${latitude}&lon=${longitude}&unit_system=si&timestep=5&start_time=now&apikey=${API_KEY}`);
   const jsonFormatRes = await fetchResponse.json();
   response.json(jsonFormatRes);
 });

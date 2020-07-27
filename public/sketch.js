@@ -10,9 +10,9 @@ function setup() {
       document.getElementById('latitude').textContent = `Latitude: ${lat}`;
       document.getElementById('longitude').textContent = `Longitude: ${long}`;
 
-      const apiUrl = `/weather`;
+      const apiUrl = `/weather/${long},${lat}`;
       const response = await fetch(apiUrl);
-      const jsonFormatReponse = response.json();
+      const jsonFormatReponse = await response.json();
       console.log(jsonFormatReponse);
     });
   } else {
